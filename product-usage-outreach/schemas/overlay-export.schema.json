@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/overlay-export.schema.json",
+  "title": "Organization Overlay Export Manifest",
+  "type": "object",
+  "required": ["export_format_version", "overlay_schema_version", "organization_id", "created_at", "overlay_manifest_hash", "inventory_hash_algorithm", "inventory_hash", "files", "excluded_content", "restore_policy"],
+  "properties": {
+    "export_format_version": {"const": "1.0"},
+    "overlay_schema_version": {"const": "1.0"},
+    "organization_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "overlay_manifest_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "inventory_hash_algorithm": {"const": "sha256-path-null-sha256-newline-v1"},
+    "inventory_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "bytes", "category"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"},
+          "sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "bytes": {"type": "integer", "minimum": 0},
+          "category": {"enum": ["manifest", "state", "organization", "generated"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "excluded_content": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {"enum": ["campaign-workspaces", "credentials", "production-row-data", "blind-materials"]},
+      "allOf": [
+        {"contains": {"const": "campaign-workspaces"}},
+        {"contains": {"const": "credentials"}},
+        {"contains": {"const": "production-row-data"}},
+        {"contains": {"const": "blind-materials"}}
+      ]
+    },
+    "restore_policy": {
+      "type": "object",
+      "required": ["on_incompatible_version", "on_hash_mismatch", "overwrite_existing"],
+      "properties": {
+        "on_incompatible_version": {"const": "leave-unchanged"},
+        "on_hash_mismatch": {"const": "abort-without-write"},
+        "overwrite_existing": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

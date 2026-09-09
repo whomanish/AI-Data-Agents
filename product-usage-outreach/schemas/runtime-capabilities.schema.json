@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/runtime-capabilities.schema.json",
+  "title": "Runtime Capabilities",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "observed_at",
+    "storage",
+    "execution",
+    "connector_operations",
+    "network",
+    "external_write",
+    "blockers"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "environment_label": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storage": {
+      "type": "object",
+      "required": [
+        "readable",
+        "writable",
+        "persistence_class",
+        "overlay_path",
+        "evidence"
+      ],
+      "properties": {
+        "readable": {
+          "type": "boolean"
+        },
+        "writable": {
+          "type": "boolean"
+        },
+        "persistence_class": {
+          "enum": [
+            "persistent",
+            "session-only",
+            "none",
+            "unknown"
+          ]
+        },
+        "overlay_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "execution": {
+      "type": "object",
+      "required": [
+        "available",
+        "python_version",
+        "evidence"
+      ],
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "python_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "available"
+            ],
+            "properties": {
+              "available": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "python_version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "connector_operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "connector_id",
+          "operation",
+          "available",
+          "evidence"
+        ],
+        "properties": {
+          "connector_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "operation": {
+            "enum": [
+              "search",
+              "schema",
+              "query",
+              "export",
+              "write"
+            ]
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "network": {
+      "type": "object",
+      "required": [
+        "status",
+        "constraints"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "allowed",
+            "restricted",
+            "unavailable",
+            "unknown"
+          ]
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "external_write": {
+      "type": "object",
+      "required": [
+        "supported",
+        "requires_confirmation",
+        "evidence"
+      ],
+      "properties": {
+        "supported": {
+          "type": "boolean"
+        },
+        "requires_confirmation": {
+          "const": true
+        },
+        "evidence": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "capability",
+          "consequence",
+          "detail"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "capability": {
+            "type": "string"
+          },
+          "consequence": {
+            "enum": [
+              "safety",
+              "execution"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

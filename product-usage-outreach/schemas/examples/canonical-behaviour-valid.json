@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0",
+  "trace_key": "t-1",
+  "subject_key": "u-1",
+  "behaviour_key": "feature-used",
+  "window_start": "2026-09-03T00:00:00Z",
+  "window_end": "2026-09-03T00:00:00Z",
+  "member": true,
+  "signal_count": 2,
+  "source_trace": {
+    "analytics.event": "feature_used"
+  }
+}

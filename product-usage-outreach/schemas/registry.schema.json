@@ -1,0 +1,385 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/registry.schema.json",
+  "title": "Registry",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "organization_id",
+    "profile_status",
+    "updated_at",
+    "capabilities"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "organization_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "profile_status": {
+      "enum": [
+        "unconfigured",
+        "partial",
+        "ready",
+        "verified",
+        "stale"
+      ]
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "capability_id",
+          "maturity",
+          "supported_scopes",
+          "implementation_refs",
+          "blockers",
+          "evidence_refs",
+          "detail_reference",
+          "dependent_profile_ids"
+        ],
+        "properties": {
+          "capability_id": {
+            "enum": [
+              "environment-and-access",
+              "usage-signals",
+              "identity-resolution",
+              "user-customer-context",
+              "eligibility-and-suppression",
+              "activation-channels",
+              "measurement"
+            ]
+          },
+          "maturity": {
+            "enum": [
+              "unconfigured",
+              "partial",
+              "ready",
+              "verified",
+              "stale"
+            ]
+          },
+          "supported_scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "implementation_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "detail_reference": {
+            "type": "string",
+            "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+          },
+          "dependent_profile_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 7,
+      "maxItems": 7,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "capability_id"
+            ],
+            "properties": {
+              "capability_id": {
+                "const": "environment-and-access"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "capability_id"
+            ],
+            "properties": {
+              "capability_id": {
+                "const": "usage-signals"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "capability_id"
+            ],
+            "properties": {
+              "capability_id": {
+                "const": "identity-resolution"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "capability_id"
+            ],
+            "properties": {
+              "capability_id": {
+                "const": "user-customer-context"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "capability_id"
+            ],
+            "properties": {
+              "capability_id": {
+                "const": "eligibility-and-suppression"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "capability_id"
+            ],
+            "properties": {
+              "capability_id": {
+                "const": "activation-channels"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "capability_id"
+            ],
+            "properties": {
+              "capability_id": {
+                "const": "measurement"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "profile_status"
+        ],
+        "properties": {
+          "profile_status": {
+            "const": "unconfigured"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "maturity"
+              ],
+              "properties": {
+                "maturity": {
+                  "enum": [
+                    "unconfigured"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "profile_status"
+        ],
+        "properties": {
+          "profile_status": {
+            "const": "partial"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "maturity"
+              ],
+              "properties": {
+                "maturity": {
+                  "enum": [
+                    "partial",
+                    "ready",
+                    "verified",
+                    "stale"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "profile_status"
+        ],
+        "properties": {
+          "profile_status": {
+            "const": "ready"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "maturity"
+              ],
+              "properties": {
+                "maturity": {
+                  "enum": [
+                    "ready",
+                    "verified"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "profile_status"
+        ],
+        "properties": {
+          "profile_status": {
+            "const": "verified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "maturity"
+              ],
+              "properties": {
+                "maturity": {
+                  "enum": [
+                    "verified"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "profile_status"
+        ],
+        "properties": {
+          "profile_status": {
+            "const": "stale"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "maturity"
+              ],
+              "properties": {
+                "maturity": {
+                  "enum": [
+                    "stale"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

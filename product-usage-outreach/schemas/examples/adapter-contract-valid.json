@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "adapter_id": "usage-export-map",
+  "adapter_version": "1",
+  "purpose": "Map an approved usage export to canonical behaviour records.",
+  "input_contract": {
+    "formats": [
+      "csv",
+      "jsonl"
+    ],
+    "required_fields": [
+      "subject_id",
+      "event_name",
+      "occurred_at"
+    ],
+    "optional_fields": [
+      "partition_id"
+    ]
+  },
+  "output_contract": {
+    "format": "jsonl",
+    "record_schema": "schemas/canonical-behaviour.schema.json",
+    "canonical_path": "normalized/behaviour.jsonl"
+  },
+  "required_permissions": [
+    "file-read",
+    "file-write"
+  ],
+  "read_write_behavior": "read-only",
+  "validation_checks": [
+    "required-fields",
+    "timestamp-format",
+    "unmapped-enums",
+    "row-counts",
+    "content-hashes"
+  ],
+  "failure_dispositions": {
+    "missing": "unresolved",
+    "ambiguous": "unresolved",
+    "malformed": "rejected",
+    "conflicting": "unresolved",
+    "unmapped_enum": "unresolved"
+  },
+  "result_manifest_schema": "schemas/adapter-result.schema.json",
+  "invalidation": {
+    "material_changes": [
+      "field-mapping",
+      "filter",
+      "join",
+      "parser",
+      "failure-disposition"
+    ],
+    "non_material_changes": [
+      "comment",
+      "formatting"
+    ],
+    "dependent_profile_action": "mark-stale-and-revalidate-affected-cases"
+  },
+  "external_write_confirmation_required": true
+}

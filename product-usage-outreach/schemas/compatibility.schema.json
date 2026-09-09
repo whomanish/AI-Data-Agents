@@ -1,0 +1,344 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/compatibility.schema.json",
+  "title": "Surface Compatibility Record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "skill_name",
+    "skill_version",
+    "canonical_content_hash",
+    "updated_at",
+    "targets"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "skill_name": {
+      "const": "product-usage-outreach"
+    },
+    "skill_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonical_content_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "target",
+          "package_form",
+          "status",
+          "tested_at",
+          "tested_product_version",
+          "operating_modes",
+          "persistence_strategy",
+          "limitations",
+          "evidence",
+          "invalidation_triggers"
+        ],
+        "properties": {
+          "target": {
+            "enum": [
+              "codex-local",
+              "claude-code-local",
+              "chatgpt-app",
+              "claude-app"
+            ]
+          },
+          "package_form": {
+            "enum": [
+              "canonical-directory",
+              "generated-directory",
+              "zip",
+              "api-managed"
+            ]
+          },
+          "status": {
+            "enum": [
+              "tested",
+              "supported-with-limitations",
+              "untested",
+              "unsupported"
+            ]
+          },
+          "tested_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "tested_product_version": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "operating_modes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "advisory",
+                "bootstrap-adaptation",
+                "operational"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "persistence_strategy": {
+            "enum": [
+              "explicit-overlay",
+              "project-local-overlay",
+              "host-persistent",
+              "session-export-restore",
+              "none",
+              "unknown"
+            ]
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "evidence_id",
+                "path",
+                "hash",
+                "observed_at"
+              ],
+              "properties": {
+                "evidence_id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+                },
+                "path": {
+                  "type": "string",
+                  "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+                },
+                "hash": {
+                  "type": "string",
+                  "pattern": "^sha256:[0-9a-f]{64}$"
+                },
+                "observed_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "invalidation_triggers": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "host-version-change",
+                "package-change",
+                "schema-change",
+                "runtime-contract-change",
+                "persistence-change",
+                "installation-path-change"
+              ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "tested",
+                    "supported-with-limitations"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "tested_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "tested_product_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "evidence": {
+                  "minItems": 1
+                },
+                "operating_modes": {
+                  "minItems": 1
+                },
+                "persistence_strategy": {
+                  "not": {
+                    "const": "unknown"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "supported-with-limitations"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "limitations": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "untested"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "tested_at": {
+                  "type": "null"
+                },
+                "tested_product_version": {
+                  "type": "null"
+                },
+                "operating_modes": {
+                  "maxItems": 0
+                },
+                "evidence": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        ],
+        "additionalProperties": false
+      },
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "target"
+            ],
+            "properties": {
+              "target": {
+                "const": "codex-local"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "target"
+            ],
+            "properties": {
+              "target": {
+                "const": "claude-code-local"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "target"
+            ],
+            "properties": {
+              "target": {
+                "const": "chatgpt-app"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "target"
+            ],
+            "properties": {
+              "target": {
+                "const": "claude-app"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "targets": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "status"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "tested",
+                    "supported-with-limitations"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "canonical_content_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  ]
+}

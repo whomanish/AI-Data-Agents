@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/canonical-account.schema.json",
+  "title": "Canonical Account",
+  "type": "object",
+  "required": [
+    "record_version",
+    "trace_key",
+    "account_key",
+    "workspace_key",
+    "status",
+    "entitlements",
+    "attributes",
+    "source_trace"
+  ],
+  "properties": {
+    "record_version": {
+      "const": "1.0"
+    },
+    "trace_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "account_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workspace_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "active",
+        "inactive",
+        "unknown"
+      ]
+    },
+    "entitlements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    "source_trace": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]*$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

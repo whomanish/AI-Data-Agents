@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/profile-index.schema.json",
+  "title": "Profile Index",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "updated_at",
+    "profiles"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "profile_id",
+          "version",
+          "status",
+          "channel",
+          "deliverable",
+          "path",
+          "capability_versions"
+        ],
+        "properties": {
+          "profile_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "ready",
+              "verified",
+              "stale"
+            ]
+          },
+          "channel": {
+            "enum": [
+              "email",
+              "in-app"
+            ]
+          },
+          "deliverable": {
+            "enum": [
+              "cohort-ready",
+              "audience-ready",
+              "activation-ready"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+          },
+          "capability_versions": {
+            "type": "object",
+            "propertyNames": {
+              "enum": [
+                "environment-and-access",
+                "usage-signals",
+                "identity-resolution",
+                "user-customer-context",
+                "eligibility-and-suppression",
+                "activation-channels",
+                "measurement"
+              ]
+            },
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/adapter-contract.schema.json",
+  "title": "Adapter Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "adapter_id",
+    "adapter_version",
+    "purpose",
+    "input_contract",
+    "output_contract",
+    "required_permissions",
+    "read_write_behavior",
+    "validation_checks",
+    "failure_dispositions",
+    "result_manifest_schema",
+    "invalidation",
+    "external_write_confirmation_required"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "adapter_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "adapter_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_contract": {
+      "type": "object",
+      "required": [
+        "formats",
+        "required_fields",
+        "optional_fields"
+      ],
+      "properties": {
+        "formats": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "csv",
+              "json",
+              "jsonl",
+              "sqlite"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "optional_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "output_contract": {
+      "type": "object",
+      "required": [
+        "format",
+        "record_schema",
+        "canonical_path"
+      ],
+      "properties": {
+        "format": {
+          "enum": [
+            "csv",
+            "json",
+            "jsonl"
+          ]
+        },
+        "record_schema": {
+          "enum": [
+            "schemas/canonical-behaviour.schema.json",
+            "schemas/canonical-user.schema.json",
+            "schemas/canonical-account.schema.json",
+            "schemas/canonical-decision.schema.json",
+            "schemas/canonical-audience.schema.json"
+          ]
+        },
+        "canonical_path": {
+          "type": "string",
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "required_permissions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "file-read",
+          "file-write",
+          "connector-search",
+          "connector-schema",
+          "connector-query",
+          "connector-export",
+          "connector-write"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "read_write_behavior": {
+      "enum": [
+        "read-only",
+        "confirmed-external-write"
+      ]
+    },
+    "validation_checks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "failure_dispositions": {
+      "type": "object",
+      "required": [
+        "missing",
+        "ambiguous",
+        "malformed",
+        "conflicting",
+        "unmapped_enum"
+      ],
+      "properties": {
+        "missing": {
+          "enum": [
+            "fail",
+            "unresolved",
+            "rejected"
+          ]
+        },
+        "ambiguous": {
+          "enum": [
+            "fail",
+            "unresolved",
+            "rejected"
+          ]
+        },
+        "malformed": {
+          "enum": [
+            "fail",
+            "unresolved",
+            "rejected"
+          ]
+        },
+        "conflicting": {
+          "enum": [
+            "fail",
+            "unresolved",
+            "rejected"
+          ]
+        },
+        "unmapped_enum": {
+          "enum": [
+            "fail",
+            "unresolved",
+            "rejected"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "result_manifest_schema": {
+      "const": "schemas/adapter-result.schema.json"
+    },
+    "invalidation": {
+      "type": "object",
+      "required": [
+        "material_changes",
+        "non_material_changes",
+        "dependent_profile_action"
+      ],
+      "properties": {
+        "material_changes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "non_material_changes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "dependent_profile_action": {
+          "const": "mark-stale-and-revalidate-affected-cases"
+        }
+      },
+      "additionalProperties": false
+    },
+    "external_write_confirmation_required": {
+      "const": true
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "read_write_behavior"
+        ],
+        "properties": {
+          "read_write_behavior": {
+            "const": "read-only"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "required_permissions": {
+            "not": {
+              "contains": {
+                "const": "connector-write"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "read_write_behavior"
+        ],
+        "properties": {
+          "read_write_behavior": {
+            "const": "confirmed-external-write"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "required_permissions": {
+            "contains": {
+              "const": "connector-write"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

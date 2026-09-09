@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "generic-email-v1",
+  "channel": "email",
+  "target_identifier_types": ["arbitrary_target_ref"],
+  "target_identifier_field": "target_ref",
+  "trace_key_field": "trace_ref",
+  "row_schema": {
+    "fields": [
+      {"name": "target_ref", "types": ["string"], "required": true, "role": "target_identifier"},
+      {"name": "trace_ref", "types": ["string"], "required": true, "role": "trace_key"},
+      {"name": "label", "types": ["string", "null"], "required": false, "role": "ordinary"}
+    ],
+    "field_order": ["target_ref", "trace_ref", "label"]
+  }
+}

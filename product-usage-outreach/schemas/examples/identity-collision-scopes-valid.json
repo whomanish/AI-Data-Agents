@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "organization_id": "example-org",
+  "definitions": [
+    {
+      "id": "tenant-user",
+      "definition_hash": "sha256:c0d7ac7a94e5a3519dc95b6387a30f270ce3f8071d4df3e97be1b0264ff1d0ae",
+      "identity_namespace": "product-user-id",
+      "collision_dimensions": [
+        "tenant-id"
+      ],
+      "evidence_refs": [
+        "organization/identity-resolution.md"
+      ],
+      "provenance": {
+        "environment": "production",
+        "source_ref": "identity-configuration-review",
+        "observation_method": "controlled-query-review",
+        "verified_at": "2026-09-03T00:00:00Z",
+        "confidence": "ready",
+        "applicable_scope": "tenant-user",
+        "owner_role": "data-platform-owner"
+      }
+    }
+  ]
+}

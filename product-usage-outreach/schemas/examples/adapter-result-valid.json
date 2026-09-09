@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "adapter_id": "usage-map",
+  "adapter_version": "1",
+  "input_path": "inputs/usage.jsonl",
+  "input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "input_rows": 10,
+  "output_path": "normalized/behaviour.jsonl",
+  "output_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "output_rows": 9,
+  "validation_report_path": "reports/usage-validation.json",
+  "unresolved_path": "normalized/usage-unresolved.jsonl",
+  "unresolved_rows": 1,
+  "read_write_behavior": "read-only",
+  "rejected_path": null,
+  "rejected_rows": 0,
+  "aggregate_excluded_rows": 0,
+  "aggregate_exclusion_reason": null,
+  "activation_receipt": null
+}

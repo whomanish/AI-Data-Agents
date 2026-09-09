@@ -1,0 +1,22 @@
+{
+  "record_version": "1.0",
+  "trace_key": "t-1",
+  "user_key": "u-1",
+  "resolution_status": "resolved",
+  "identity_candidates": [
+    {
+      "source_system": "identity",
+      "identifier_type": "user-id",
+      "identifier": "u-1",
+      "partition": "region-a",
+      "confidence": 1
+    }
+  ],
+  "account_keys": [
+    "a-1"
+  ],
+  "attributes": {},
+  "source_trace": {
+    "identity.row": "r-1"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "overlay_schema_version": "1.0",
+  "organization_id": "unconfigured-org",
+  "created_at": "2026-09-03T00:00:00Z",
+  "updated_at": "2026-09-03T00:00:00Z",
+  "created_by_skill_version": "0.1.0-dev",
+  "persistence_class": "persistent",
+  "paths": {"state": "../state", "organization": "organization", "generated": "generated"},
+  "generated_resources": []
+}

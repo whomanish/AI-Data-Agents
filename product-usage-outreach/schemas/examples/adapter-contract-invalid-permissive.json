@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "adapter_id": "usage-export-map",
+  "adapter_version": "1",
+  "purpose": "Invalid example with an undeclared permissive default.",
+  "input_contract": {
+    "formats": [
+      "csv"
+    ],
+    "required_fields": [],
+    "optional_fields": []
+  },
+  "output_contract": {
+    "format": "jsonl",
+    "record_schema": "schemas/canonical-behaviour.schema.json",
+    "canonical_path": "normalized/behaviour.jsonl"
+  },
+  "required_permissions": [
+    "file-read"
+  ],
+  "read_write_behavior": "read-only",
+  "validation_checks": [
+    "row-counts"
+  ],
+  "failure_dispositions": {
+    "missing": "include",
+    "ambiguous": "unresolved",
+    "malformed": "rejected",
+    "conflicting": "unresolved",
+    "unmapped_enum": "unresolved"
+  },
+  "result_manifest_schema": "schemas/adapter-result.schema.json",
+  "invalidation": {
+    "material_changes": [
+      "filter"
+    ],
+    "non_material_changes": [],
+    "dependent_profile_action": "mark-stale-and-revalidate-affected-cases"
+  },
+  "external_write_confirmation_required": true
+}

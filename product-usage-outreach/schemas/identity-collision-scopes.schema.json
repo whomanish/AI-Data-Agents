@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/identity-collision-scopes.schema.json",
+  "title": "Identity Collision Scope Catalog",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "organization_id",
+    "definitions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "organization_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "definitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "definition_hash",
+          "identity_namespace",
+          "collision_dimensions",
+          "evidence_refs",
+          "provenance"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+            "not": {
+              "const": "unknown"
+            }
+          },
+          "identity_namespace": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+            "not": {
+              "const": "unknown"
+            }
+          },
+          "definition_hash": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "collision_dimensions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+              "not": {
+                "const": "unknown"
+              }
+            },
+            "uniqueItems": true
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "provenance": {
+            "type": "object",
+            "required": [
+              "environment",
+              "source_ref",
+              "observation_method",
+              "verified_at",
+              "confidence",
+              "applicable_scope",
+              "owner_role"
+            ],
+            "properties": {
+              "environment": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._:-]*$",
+                "not": {
+                  "enum": [
+                    "unknown",
+                    "synthetic",
+                    "fixture",
+                    "test",
+                    "blind"
+                  ]
+                }
+              },
+              "source_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._:/-]*$"
+              },
+              "observation_method": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "confidence": {
+                "enum": [
+                  "ready",
+                  "verified"
+                ]
+              },
+              "applicable_scope": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+              },
+              "owner_role": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

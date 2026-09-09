@@ -1,0 +1,12 @@
+{
+  "export_format_version": "2.0",
+  "overlay_schema_version": "2.0",
+  "organization_id": "unconfigured-org",
+  "created_at": "2026-09-03T00:00:00Z",
+  "overlay_manifest_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "inventory_hash_algorithm": "sha256-path-null-sha256-newline-v1",
+  "inventory_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "files": [{"path": "overlay.json", "sha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000", "bytes": 0, "category": "manifest"}],
+  "excluded_content": ["campaign-workspaces", "credentials", "production-row-data", "blind-materials"],
+  "restore_policy": {"on_incompatible_version": "leave-unchanged", "on_hash_mismatch": "abort-without-write", "overwrite_existing": false}
+}

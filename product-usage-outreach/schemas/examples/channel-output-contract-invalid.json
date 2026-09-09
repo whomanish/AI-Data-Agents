@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "generic-invalid-v1",
+  "target_identifier_types": [],
+  "target_identifier_field": "target_ref",
+  "trace_key_field": "trace_ref",
+  "row_schema": {
+    "fields": [{"name": "target_ref", "types": ["object"], "required": false, "role": "ordinary"}],
+    "field_order": ["target_ref", "target_ref"]
+  },
+  "unexpected": true
+}

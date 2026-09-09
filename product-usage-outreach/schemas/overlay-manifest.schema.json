@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/overlay-manifest.schema.json",
+  "title": "Overlay Manifest",
+  "type": "object",
+  "required": [
+    "overlay_schema_version",
+    "organization_id",
+    "created_at",
+    "updated_at",
+    "created_by_skill_version",
+    "persistence_class",
+    "paths",
+    "generated_resources"
+  ],
+  "properties": {
+    "overlay_schema_version": {
+      "const": "1.0"
+    },
+    "organization_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by_skill_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "persistence_class": {
+      "enum": [
+        "persistent",
+        "session-only"
+      ]
+    },
+    "paths": {
+      "type": "object",
+      "required": [
+        "state",
+        "organization",
+        "generated"
+      ],
+      "properties": {
+        "state": {
+          "type": "string",
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+        },
+        "organization": {
+          "type": "string",
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+        },
+        "generated": {
+          "type": "string",
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "generated_resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "id",
+          "path",
+          "version"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "adapter",
+              "runner",
+              "regression-case"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "exported_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "observed_at": "2026-09-03T00:00:00Z",
+  "environment_label": "local-agent",
+  "storage": {
+    "readable": true,
+    "writable": true,
+    "persistence_class": "persistent",
+    "overlay_path": ".product-usage-outreach",
+    "evidence": [
+      "write-and-read probe passed"
+    ]
+  },
+  "execution": {
+    "available": true,
+    "python_version": "3.12.3",
+    "evidence": [
+      "helper smoke check passed"
+    ]
+  },
+  "connector_operations": [],
+  "network": {
+    "status": "restricted",
+    "constraints": [
+      "sandboxed"
+    ]
+  },
+  "external_write": {
+    "supported": false,
+    "requires_confirmation": true,
+    "evidence": "no write operation requested"
+  },
+  "blockers": []
+}

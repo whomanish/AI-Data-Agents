@@ -1,0 +1,169 @@
+{
+  "cases": [
+    {
+      "schema": "../channel-output-contract.schema.json",
+      "example": "channel-output-contract-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../channel-output-contract.schema.json",
+      "example": "channel-output-contract-invalid.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../overlay-export.schema.json",
+      "example": "overlay-export-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../overlay-export.schema.json",
+      "example": "overlay-export-invalid-version.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../compatibility.schema.json",
+      "example": "compatibility-valid-untested.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../compatibility.schema.json",
+      "example": "compatibility-invalid-unsupported-claim.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../overlay-manifest.schema.json",
+      "example": "overlay-invalid-parent-traversal.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../adapter-contract.schema.json",
+      "example": "adapter-contract-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../adapter-contract.schema.json",
+      "example": "adapter-contract-invalid-permissive.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../runtime-capabilities.schema.json",
+      "example": "runtime-valid-persistent.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../runtime-capabilities.schema.json",
+      "example": "runtime-valid-session-only.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../runtime-capabilities.schema.json",
+      "example": "runtime-invalid-unsupported-version.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../overlay-manifest.schema.json",
+      "example": "overlay-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../overlay-manifest.schema.json",
+      "example": "overlay-invalid-unsupported-version.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../registry.schema.json",
+      "example": "registry-valid-unconfigured.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../registry.schema.json",
+      "example": "registry-invalid-pii-field.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../health.schema.json",
+      "example": "health-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../health.schema.json",
+      "example": "health-invalid-pii-metric.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../profile-index.schema.json",
+      "example": "profile-index-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../identity-collision-scopes.schema.json",
+      "example": "identity-collision-scopes-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../identity-collision-scopes.schema.json",
+      "example": "identity-collision-scopes-invalid-unknown.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../execution-profile.schema.json",
+      "example": "execution-profile-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../execution-profile.schema.json",
+      "example": "execution-profile-invalid-missing-collision-scope.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../execution-profile.schema.json",
+      "example": "execution-profile-invalid-legacy-v1.0.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../execution-profile.schema.json",
+      "example": "execution-profile-invalid-unknown-field.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../canonical-behaviour.schema.json",
+      "example": "canonical-behaviour-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../canonical-user.schema.json",
+      "example": "canonical-user-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../canonical-account.schema.json",
+      "example": "canonical-account-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../canonical-decision.schema.json",
+      "example": "canonical-decision-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../canonical-decision.schema.json",
+      "example": "canonical-decision-invalid-missing-reason.json",
+      "expected_valid": false
+    },
+    {
+      "schema": "../canonical-audience.schema.json",
+      "example": "canonical-audience-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../adapter-result.schema.json",
+      "example": "adapter-result-valid.json",
+      "expected_valid": true
+    },
+    {
+      "schema": "../funnel.schema.json",
+      "example": "funnel-valid.json",
+      "expected_valid": true
+    }
+  ]
+}

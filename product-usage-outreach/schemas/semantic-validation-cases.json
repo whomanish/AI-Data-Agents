@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {
+      "id": "identity-collision-scopes-duplicate-id",
+      "rule_id": "state.identity-collision-scope.unique-id",
+      "schema": "identity-collision-scopes.schema.json",
+      "document": "semantic-examples/identity-collision-scopes-duplicate-id.json",
+      "expected_error": "duplicate-identity-collision-scope-id"
+    },
+    {
+      "id": "identity-collision-scopes-bad-definition-hash",
+      "rule_id": "state.identity-collision-scope.definition-hash",
+      "schema": "identity-collision-scopes.schema.json",
+      "document": "semantic-examples/identity-collision-scopes-bad-definition-hash.json",
+      "expected_error": "identity-collision-scope-hash-mismatch"
+    },
+    {
+      "id": "identity-collision-scopes-synthetic-provenance",
+      "rule_id": "state.identity-collision-scope.production-provenance",
+      "schema": "identity-collision-scopes.schema.json",
+      "document": "semantic-examples/identity-collision-scopes-synthetic-provenance.json",
+      "expected_error": "identity-collision-scope-synthetic-provenance"
+    },
+    {
+      "id": "profile-index-duplicate-id",
+      "rule_id": "state.profile-index.unique-profile-id",
+      "schema": "profile-index.schema.json",
+      "document": "semantic-examples/profile-index-duplicate-id.json",
+      "expected_error": "duplicate-profile-id"
+    },
+    {
+      "id": "runtime-duplicate-operation",
+      "rule_id": "runtime.connector-operation.unique",
+      "schema": "runtime-capabilities.schema.json",
+      "document": "semantic-examples/runtime-duplicate-operation.json",
+      "expected_error": "duplicate-connector-operation"
+    },
+    {
+      "id": "execution-profile-inverted-range",
+      "rule_id": "profile.operating-range.ordered",
+      "schema": "execution-profile.schema.json",
+      "document": "semantic-examples/execution-profile-inverted-range.json",
+      "expected_error": "inverted-operating-range"
+    },
+    {
+      "id": "execution-profile-unchecked-dependency",
+      "rule_id": "profile.dependency.quick-check-covered",
+      "schema": "execution-profile.schema.json",
+      "document": "semantic-examples/execution-profile-unchecked-dependency.json",
+      "expected_error": "capability-missing-quick-check"
+    },
+    {
+      "id": "adapter-result-unreconciled",
+      "rule_id": "adapter.result.reconciles",
+      "schema": "adapter-result.schema.json",
+      "document": "semantic-examples/adapter-result-unreconciled.json",
+      "expected_error": "adapter-row-count-mismatch"
+    },
+    {
+      "id": "funnel-unreconciled",
+      "rule_id": "funnel.dispositions.reconcile",
+      "schema": "funnel.schema.json",
+      "document": "semantic-examples/funnel-unreconciled.json",
+      "expected_error": "funnel-count-mismatch"
+    },
+    {
+      "id": "overlay-export-duplicate-path",
+      "rule_id": "overlay-export.paths.unique",
+      "schema": "overlay-export.schema.json",
+      "document": "semantic-examples/overlay-export-duplicate-path.json",
+      "expected_error": "duplicate-export-path"
+    },
+    {
+      "id": "overlay-export-bad-inventory-hash",
+      "rule_id": "overlay-export.inventory.hash",
+      "schema": "overlay-export.schema.json",
+      "document": "semantic-examples/overlay-export-bad-inventory-hash.json",
+      "expected_error": "export-inventory-hash-mismatch"
+    }
+  ]
+}

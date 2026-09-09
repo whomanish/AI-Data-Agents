@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/health.schema.json",
+  "title": "Health",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "updated_at",
+    "latest_successful_run_at",
+    "metrics",
+    "connector_operations",
+    "fingerprints",
+    "thresholds",
+    "last_failures"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "latest_successful_run_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "metrics": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^(?!.*(?:email|name|address|phone|credential|secret|token|recipient|row))[a-z0-9][a-z0-9._-]*$"
+      },
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "connector_operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "connector_id",
+          "operation",
+          "status",
+          "observed_at"
+        ],
+        "properties": {
+          "connector_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "available",
+              "blocked",
+              "unknown"
+            ]
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "fingerprints": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^(?!.*(?:email|name|address|phone|credential|secret|token|recipient|row))[a-z0-9][a-z0-9._-]*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^sha256:[0-9a-f]{64}$"
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^(?!.*(?:email|name|address|phone|credential|secret|token|recipient|row))[a-z0-9][a-z0-9._-]*$"
+      },
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "last_failures": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "code",
+          "capability",
+          "observed_at"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+          },
+          "capability": {
+            "enum": [
+              "environment-and-access",
+              "usage-signals",
+              "identity-resolution",
+              "user-customer-context",
+              "eligibility-and-suppression",
+              "activation-channels",
+              "measurement"
+            ]
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

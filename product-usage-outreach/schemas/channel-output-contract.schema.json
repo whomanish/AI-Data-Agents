@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1.0/channel-output-contract.schema.json",
+  "title": "Channel Output Contract",
+  "type": "object",
+  "required": ["schema_version", "contract_id", "channel", "target_identifier_types", "target_identifier_field", "trace_key_field", "row_schema"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "contract_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"},
+    "channel": {"enum": ["email", "in-app"]},
+    "target_identifier_types": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]*$"}
+    },
+    "target_identifier_field": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "trace_key_field": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "row_schema": {
+      "type": "object", "required": ["fields", "field_order"], "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "type": "array", "minItems": 2,
+          "items": {
+            "type": "object", "required": ["name", "types", "required", "role"], "additionalProperties": false,
+            "properties": {
+              "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+              "types": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["string", "number", "boolean", "null"]}},
+              "required": {"type": "boolean"},
+              "role": {"enum": ["ordinary", "target_identifier", "trace_key"]}
+            }
+          }
+        },
+        "field_order": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}}
+      }
+    }
+  },
+  "additionalProperties": false
+}

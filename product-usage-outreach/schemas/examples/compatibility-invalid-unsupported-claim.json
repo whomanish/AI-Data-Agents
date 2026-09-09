@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "skill_name": "product-usage-outreach",
+  "skill_version": "0.1.0-dev",
+  "canonical_content_hash": null,
+  "updated_at": "2026-09-03T00:00:00Z",
+  "targets": [
+    {"target": "codex-local", "package_form": "canonical-directory", "status": "tested", "tested_at": null, "tested_product_version": null, "operating_modes": ["operational"], "persistence_strategy": "project-local-overlay", "limitations": [], "evidence": [], "invalidation_triggers": ["package-change"]},
+    {"target": "claude-code-local", "package_form": "generated-directory", "status": "untested", "tested_at": null, "tested_product_version": null, "operating_modes": [], "persistence_strategy": "unknown", "limitations": [], "evidence": [], "invalidation_triggers": ["package-change"]},
+    {"target": "chatgpt-app", "package_form": "api-managed", "status": "untested", "tested_at": null, "tested_product_version": null, "operating_modes": [], "persistence_strategy": "unknown", "limitations": [], "evidence": [], "invalidation_triggers": ["host-version-change"]},
+    {"target": "claude-app", "package_form": "zip", "status": "untested", "tested_at": null, "tested_product_version": null, "operating_modes": [], "persistence_strategy": "unknown", "limitations": [], "evidence": [], "invalidation_triggers": ["host-version-change"]}
+  ]
+}

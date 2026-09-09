@@ -1,0 +1,13 @@
+{
+  "record_version": "1.0",
+  "trace_key": "t-1",
+  "channel": "email",
+  "disposition": "included",
+  "reason_codes": [],
+  "evidence_refs": [
+    "evidence/rule-1"
+  ],
+  "policy_refs": [],
+  "decided_at": "2026-09-03T00:00:00Z",
+  "source_trace": {}
+}

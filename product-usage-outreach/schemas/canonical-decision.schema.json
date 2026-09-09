@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/canonical-decision.schema.json",
+  "title": "Canonical Decision",
+  "type": "object",
+  "required": [
+    "record_version",
+    "trace_key",
+    "channel",
+    "disposition",
+    "reason_codes",
+    "evidence_refs",
+    "policy_refs",
+    "decided_at",
+    "source_trace"
+  ],
+  "properties": {
+    "record_version": {
+      "const": "1.0"
+    },
+    "trace_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "channel": {
+      "enum": [
+        "email",
+        "in-app"
+      ]
+    },
+    "disposition": {
+      "enum": [
+        "included",
+        "excluded",
+        "suppressed",
+        "holdout",
+        "unresolved"
+      ]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "policy_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "decided_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_trace": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]*$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

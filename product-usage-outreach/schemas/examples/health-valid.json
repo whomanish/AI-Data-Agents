@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-03T00:00:00Z",
+  "latest_successful_run_at": null,
+  "metrics": {
+    "input-count": 0
+  },
+  "connector_operations": [],
+  "fingerprints": {},
+  "thresholds": {
+    "match-rate-minimum": 0.8
+  },
+  "last_failures": []
+}

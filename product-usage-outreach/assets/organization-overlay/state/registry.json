@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "organization_id": "unconfigured-org",
+  "profile_status": "unconfigured",
+  "updated_at": "2026-09-03T00:00:00Z",
+  "capabilities": [
+    {
+      "capability_id": "environment-and-access",
+      "maturity": "unconfigured",
+      "supported_scopes": [],
+      "implementation_refs": [],
+      "blockers": [],
+      "evidence_refs": [],
+      "detail_reference": "organization/environment-and-access.md",
+      "dependent_profile_ids": []
+    },
+    {
+      "capability_id": "usage-signals",
+      "maturity": "unconfigured",
+      "supported_scopes": [],
+      "implementation_refs": [],
+      "blockers": [],
+      "evidence_refs": [],
+      "detail_reference": "organization/usage-signals.md",
+      "dependent_profile_ids": []
+    },
+    {
+      "capability_id": "identity-resolution",
+      "maturity": "unconfigured",
+      "supported_scopes": [],
+      "implementation_refs": [],
+      "blockers": [],
+      "evidence_refs": [],
+      "detail_reference": "organization/identity-resolution.md",
+      "dependent_profile_ids": []
+    },
+    {
+      "capability_id": "user-customer-context",
+      "maturity": "unconfigured",
+      "supported_scopes": [],
+      "implementation_refs": [],
+      "blockers": [],
+      "evidence_refs": [],
+      "detail_reference": "organization/user-customer-context.md",
+      "dependent_profile_ids": []
+    },
+    {
+      "capability_id": "eligibility-and-suppression",
+      "maturity": "unconfigured",
+      "supported_scopes": [],
+      "implementation_refs": [],
+      "blockers": [],
+      "evidence_refs": [],
+      "detail_reference": "organization/eligibility-and-suppression.md",
+      "dependent_profile_ids": []
+    },
+    {
+      "capability_id": "activation-channels",
+      "maturity": "unconfigured",
+      "supported_scopes": [],
+      "implementation_refs": [],
+      "blockers": [],
+      "evidence_refs": [],
+      "detail_reference": "organization/activation-channels.md",
+      "dependent_profile_ids": []
+    },
+    {
+      "capability_id": "measurement",
+      "maturity": "unconfigured",
+      "supported_scopes": [],
+      "implementation_refs": [],
+      "blockers": [],
+      "evidence_refs": [],
+      "detail_reference": "organization/measurement.md",
+      "dependent_profile_ids": []
+    }
+  ]
+}

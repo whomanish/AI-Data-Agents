@@ -1,0 +1,16 @@
+{
+  "record_version": "1.0",
+  "trace_key": "t-1",
+  "channel": "in-app",
+  "target_identifier_type": "workspace-membership-id",
+  "target_identifier": "wm-1",
+  "identity_evidence_refs": [
+    "identity/t-1"
+  ],
+  "disposition": "included",
+  "holdout_assignment": "treatment",
+  "channel_fields": {
+    "entitled": true
+  },
+  "source_trace": {}
+}

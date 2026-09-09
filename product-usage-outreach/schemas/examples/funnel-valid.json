@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "input_count": 10,
+  "unique_trace_count": 9,
+  "duplicate_count": 1,
+  "dispositions": {
+    "included": 4,
+    "excluded": 2,
+    "suppressed": 1,
+    "holdout": 1,
+    "unresolved": 1
+  },
+  "decision_file": "decisions/final.jsonl",
+  "decision_file_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "generated_at": "2026-09-03T00:00:00Z"
+}

@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/canonical-user.schema.json",
+  "title": "Canonical User",
+  "type": "object",
+  "required": [
+    "record_version",
+    "trace_key",
+    "user_key",
+    "resolution_status",
+    "identity_candidates",
+    "account_keys",
+    "attributes",
+    "source_trace"
+  ],
+  "properties": {
+    "record_version": {
+      "const": "1.0"
+    },
+    "trace_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "user_key": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resolution_status": {
+      "enum": [
+        "resolved",
+        "unmatched",
+        "ambiguous",
+        "conflict"
+      ]
+    },
+    "identity_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_system",
+          "identifier_type",
+          "identifier",
+          "partition",
+          "confidence"
+        ],
+        "properties": {
+          "source_system": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identifier_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identifier": {
+            "type": "string",
+            "minLength": 1
+          },
+          "partition": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "account_keys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    "source_trace": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]*$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "resolution_status"
+        ],
+        "properties": {
+          "resolution_status": {
+            "const": "resolved"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "user_key": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "user_key": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

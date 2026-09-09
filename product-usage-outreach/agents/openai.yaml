@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Usage Outreach"
+  short_description: "Build safe product-usage campaign audiences"
+  default_prompt: "Use $product-usage-outreach to plan or build a validated product-usage campaign audience."

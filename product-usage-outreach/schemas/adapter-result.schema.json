@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/adapter-result.schema.json",
+  "title": "Adapter Result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "adapter_id",
+    "adapter_version",
+    "input_path",
+    "input_hash",
+    "input_rows",
+    "output_path",
+    "output_hash",
+    "output_rows",
+    "validation_report_path",
+    "unresolved_path",
+    "unresolved_rows",
+    "read_write_behavior",
+    "rejected_path",
+    "rejected_rows",
+    "aggregate_excluded_rows",
+    "aggregate_exclusion_reason",
+    "activation_receipt"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "adapter_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]*$"
+    },
+    "adapter_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_path": {
+      "type": "string",
+      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "input_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "output_path": {
+      "type": "string",
+      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "output_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "output_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "validation_report_path": {
+      "type": "string",
+      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "unresolved_path": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "unresolved_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "read_write_behavior": {
+      "enum": [
+        "read-only",
+        "confirmed-external-write"
+      ]
+    },
+    "rejected_path": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\\\)(?!.*//)(?!\\.\\.?$)(?!\\.\\.?/)(?!.*\\/\\.\\.?(?:\\/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$"
+    },
+    "rejected_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "aggregate_excluded_rows": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "aggregate_exclusion_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "activation_receipt": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "confirmation_scope",
+            "target_system",
+            "action",
+            "confirmed_at",
+            "receipt_id"
+          ],
+          "properties": {
+            "confirmation_scope": {
+              "type": "string",
+              "minLength": 1
+            },
+            "target_system": {
+              "type": "string",
+              "minLength": 1
+            },
+            "action": {
+              "enum": [
+                "upload",
+                "publish",
+                "schedule",
+                "send",
+                "activate"
+              ]
+            },
+            "confirmed_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "receipt_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "unresolved_rows"
+        ],
+        "properties": {
+          "unresolved_rows": {
+            "minimum": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "unresolved_path": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "rejected_rows"
+        ],
+        "properties": {
+          "rejected_rows": {
+            "minimum": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rejected_path": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "aggregate_excluded_rows"
+        ],
+        "properties": {
+          "aggregate_excluded_rows": {
+            "minimum": 1
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "aggregate_exclusion_reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "read_write_behavior"
+        ],
+        "properties": {
+          "read_write_behavior": {
+            "const": "confirmed-external-write"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "activation_receipt": {
+            "type": "object"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "activation_receipt": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

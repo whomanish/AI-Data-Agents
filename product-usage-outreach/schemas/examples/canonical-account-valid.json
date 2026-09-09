@@ -1,0 +1,14 @@
+{
+  "record_version": "1.0",
+  "trace_key": "t-1",
+  "account_key": "a-1",
+  "workspace_key": "w-1",
+  "status": "active",
+  "entitlements": [
+    "feature-a"
+  ],
+  "attributes": {},
+  "source_trace": {
+    "billing.row": "b-1"
+  }
+}

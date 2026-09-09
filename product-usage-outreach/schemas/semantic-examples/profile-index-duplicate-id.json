@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-03T00:00:00Z",
+  "profiles": [
+    {
+      "profile_id": "email-adoption-v1",
+      "version": "1",
+      "status": "ready",
+      "channel": "email",
+      "deliverable": "audience-ready",
+      "path": "state/execution-profiles/email-adoption-v1.json",
+      "capability_versions": {
+        "usage-signals": "1"
+      }
+    },
+    {
+      "profile_id": "email-adoption-v1",
+      "version": "2",
+      "status": "ready",
+      "channel": "email",
+      "deliverable": "audience-ready",
+      "path": "state/execution-profiles/email-adoption-v1.json",
+      "capability_versions": {
+        "usage-signals": "1"
+      }
+    }
+  ]
+}

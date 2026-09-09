@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.1",
+  "profile_id": "email-adoption-v1",
+  "version": "1",
+  "status": "ready",
+  "match_criteria": {
+    "channel": "email",
+    "deliverable": "audience-ready",
+    "identity_population": "known-users",
+    "identity_collision_scope": "tenant-user",
+    "identity_collision_scope_definition_hash": "sha256:c0d7ac7a94e5a3519dc95b6387a30f270ce3f8071d4df3e97be1b0264ff1d0ae",
+    "policy_scope": "default-email",
+    "source_ids": [
+      "usage-export"
+    ],
+    "output_contract": "email-csv-v1"
+  },
+  "required_parameters": [
+    "window-start",
+    "window-end"
+  ],
+  "capability_dependencies": [
+    {
+      "capability_id": "usage-signals",
+      "implementation_id": "usage-map",
+      "version": "1"
+    },
+    {
+      "capability_id": "identity-resolution",
+      "implementation_id": "identity-map",
+      "version": "1"
+    }
+  ],
+  "quick_checks": [
+    {
+      "id": "usage-freshness",
+      "capability_id": "measurement",
+      "type": "freshness",
+      "on_failure": "adapt-affected-capability",
+      "configuration": {
+        "max_age_days": 7
+      }
+    },
+    {
+      "id": "identity-access",
+      "capability_id": "identity-resolution",
+      "type": "access",
+      "on_failure": "adapt-affected-capability"
+    }
+  ],
+  "operating_ranges": {
+    "cohort-size": {
+      "minimum": 1,
+      "maximum": 100000
+    }
+  },
+  "runner": {
+    "kind": "stages",
+    "stages": [
+      "normalize",
+      "validate"
+    ]
+  },
+  "supported_outputs": [
+    "email-csv-v1"
+  ],
+  "verified_at": null,
+  "evidence_refs": [
+    "evidence/controlled-run"
+  ],
+  "invalidation_triggers": [
+    "capability-version-change"
+  ]
+}

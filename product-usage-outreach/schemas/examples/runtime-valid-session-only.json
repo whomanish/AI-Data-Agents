@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "observed_at": "2026-09-03T00:00:00Z",
+  "environment_label": null,
+  "storage": {
+    "readable": true,
+    "writable": true,
+    "persistence_class": "session-only",
+    "overlay_path": "session/overlay",
+    "evidence": [
+      "session probe"
+    ]
+  },
+  "execution": {
+    "available": false,
+    "python_version": null,
+    "evidence": [
+      "operation unavailable"
+    ]
+  },
+  "connector_operations": [],
+  "network": {
+    "status": "unknown",
+    "constraints": []
+  },
+  "external_write": {
+    "supported": false,
+    "requires_confirmation": true,
+    "evidence": "unsupported"
+  },
+  "blockers": [
+    {
+      "id": "no-runtime",
+      "capability": "deterministic-validation",
+      "consequence": "execution",
+      "detail": "Use a local handoff."
+    }
+  ]
+}

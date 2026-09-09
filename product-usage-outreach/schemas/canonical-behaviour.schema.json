@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.product-usage-outreach.dev/v1/canonical-behaviour.schema.json",
+  "title": "Canonical Behaviour",
+  "type": "object",
+  "required": [
+    "record_version",
+    "trace_key",
+    "subject_key",
+    "behaviour_key",
+    "window_start",
+    "window_end",
+    "member",
+    "signal_count",
+    "source_trace"
+  ],
+  "properties": {
+    "record_version": {
+      "const": "1.0"
+    },
+    "trace_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "behaviour_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "window_start": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "window_end": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "member": {
+      "type": "boolean"
+    },
+    "signal_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_trace": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.:-]*$"
+      },
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "null"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}
