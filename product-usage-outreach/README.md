@@ -52,7 +52,6 @@ Exact package checks and the local test environment are recorded in
 
 ## Release track
 
-This preview exists to collect early installation and usability feedback. It
-does not mark the v1 OpenSpec work complete. Later releases will retain the
-same repository and upgrade the preview after the remaining QA, blind tests,
-surface conformance, and release gates pass.
+This preview is intended for early installation and usability testing. Future
+releases will continue in this repository and incorporate feedback, broader
+compatibility testing, and production-readiness improvements.
