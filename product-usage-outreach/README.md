@@ -29,7 +29,7 @@ production-release sign-off are still open.
 
 ## Install
 
-Download `product-usage-outreach-preview.zip` from the GitHub prerelease and
+Download `product-usage-outreach-preview.zip` from the GitHub pre-release and
 verify its checksum from `SHA256SUMS`.
 
 ```sh
