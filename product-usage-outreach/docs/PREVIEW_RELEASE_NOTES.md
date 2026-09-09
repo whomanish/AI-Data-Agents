@@ -23,8 +23,9 @@ testing in Codex.
 - Prepare campaign messaging, timing, measurement, and activation handoffs.
 - Verify that external actions remain disabled without separate authorization.
 
-See the repository's synthetic example for a five-workspace walkthrough that
-shows how behavioural fit is kept separate from email eligibility.
+See the [synthetic example workflow](https://github.com/whomanish/AI-Data-Agents/blob/main/product-usage-outreach/docs/EXAMPLE_WORKFLOW.md)
+for a five-workspace walkthrough that shows how behavioural fit is kept
+separate from email eligibility.
 
 ## Included in the package
 
