@@ -7,7 +7,7 @@ Use this record to plan a single campaign without putting recipient rows, names,
 - Campaign reference: `[unknown]`
 - Requested deliverable: `[cohort-ready | audience-ready | activation-ready | unknown]`
 - Promoted behaviour or outcome: `[unknown]`
-- Exact cohort semantics: `[event or query meaning; threshold; time window; exclusions; uniqueness rule; unknown]`
+- Exact cohort semantics: `[event or query meaning, threshold, time window, exclusions, uniqueness rule, unknown]`
 - Cohort semantic confirmation and evidence: `[unknown]`
 - Eligibility context and policy owner/decision: `[unknown]`
 - Timing: `[unknown]`
@@ -17,11 +17,11 @@ Use this record to plan a single campaign without putting recipient rows, names,
 - Holdout plan: `[none | deterministic method and parameters | unknown]`
 - Requested canonical output location: `[controlled campaign workspace path or unknown]`
 - Requested channel output location: `[controlled campaign workspace path or unknown]`
-- Unresolved facts: `[list; do not infer permission from an unknown]`
+- Unresolved facts: `[list, do not infer permission from an unknown]`
 
 ## Local and read-only preparation
 
-These activities create or inspect local artifacts only; they do not authorize an external write.
+These activities create or inspect local artifacts only. They do not authorize an external write.
 
 - Inspect connector capabilities, documentation, schemas, and aggregate evidence first: `[planned/completed/unknown]`
 - Minimal redacted or synthetic sample needed, if aggregate evidence is insufficient: `[none/why and scope/unknown]`
@@ -39,7 +39,7 @@ These activities create or inspect local artifacts only; they do not authorize a
 
 Do not advance an affected decision past a safety or execution blocker. Record deferrable enrichment without presenting it as required evidence.
 
-## External action — just-in-time confirmation
+## External action: just-in-time confirmation
 
 Complete this block immediately before an upload, publish, schedule, send, or activation. A verified repeat profile does not replace this confirmation.
 

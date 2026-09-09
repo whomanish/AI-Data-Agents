@@ -6,19 +6,19 @@ Use adapters to translate approved source data into versioned canonical records.
 
 Every adapter has a machine-readable declaration conforming to [`adapter-contract.schema.json`](../../schemas/adapter-contract.schema.json). The declaration fixes:
 
-- a stable adapter ID, version, and narrow purpose;
-- accepted file formats and required and optional source fields;
-- canonical output format, schema, and campaign-workspace path;
-- the minimum file or connector permissions needed;
-- read-only or confirmation-gated external-write behaviour;
-- deterministic validation checks;
-- explicit dispositions for missing, ambiguous, malformed, conflicting, and unmapped values;
-- the adapter-result manifest schema;
+- a stable adapter ID, version, and narrow purpose.
+- accepted file formats and required and optional source fields.
+- canonical output format, schema, and campaign-workspace path.
+- the minimum file or connector permissions needed.
+- read-only or confirmation-gated external-write behaviour.
+- deterministic validation checks.
+- explicit dispositions for missing, ambiguous, malformed, conflicting, and unmapped values.
+- the adapter-result manifest schema.
 - material and non-material change classes and their invalidation effect.
 
 Schema validation is followed by the cross-field rules in [`semantic-validation-contract.md`](semantic-validation-contract.md), including exact adapter-result row reconciliation.
 
-The portable core does not embed credentials or vendor SDKs. Connector inspection and extraction remain agent-mediated; adapters consume an approved file or structured connector result. Discovery and audience construction use read, query, or export operations only.
+The portable core does not embed credentials or vendor SDKs. Connector inspection and extraction remain agent-mediated. Adapters consume an approved file or structured connector result. Discovery and audience construction use read, query, or export operations only.
 
 ## Input and output boundary
 
@@ -28,9 +28,9 @@ Write canonical rows into the active campaign workspace. Each row must validate 
 
 An adapter run emits:
 
-1. the canonical data file;
-2. an [`adapter-result.schema.json`](../../schemas/adapter-result.schema.json) manifest with input and output SHA-256 hashes and row counts;
-3. a validation report;
+1. the canonical data file.
+2. an [`adapter-result.schema.json`](../../schemas/adapter-result.schema.json) manifest with input and output SHA-256 hashes and row counts.
+3. a validation report.
 4. an unresolved or rejected-record file when applicable.
 
 The result counts must reconcile: every input record is represented by a canonical output, an unresolved record, a rejected record recorded by the validation report, or a documented aggregate input exclusion established before the adapter boundary. Downstream funnel reconciliation remains mandatory.

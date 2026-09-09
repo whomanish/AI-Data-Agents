@@ -1,5 +1,16 @@
 # Preview verification
 
+## What this evidence means
+
+The preview can be downloaded, checked, installed in the documented local
+environment, and exercised with controlled synthetic scenarios. Its package is
+reproducible and its deterministic validation tests pass.
+
+This evidence does not approve production data, guarantee compatibility with
+unlisted environments, or authorize a real campaign action. It supports early
+testing of the skill's reasoning, local workflow, outputs, and safety
+boundaries.
+
 ## Artifact identity
 
 - Version: `0.1.0-preview.1`
@@ -27,8 +38,9 @@
 - A fresh temporary installation passed the offline smoke checker.
 - All packaged JSON files parsed strictly and all packaged Python files
   compiled in memory.
-- No symlink, evaluator, build history, OpenSpec source, repository metadata,
-  Codex workspace metadata, or Python cache was present in the package.
+- No symlink, evaluator, build history, internal specification source,
+  repository metadata, Codex workspace metadata, or Python cache was present
+  in the package.
 - The normal evaluation harness passed 123/123 cases with zero failures or
   errors.
 - The repository deterministic unit suite passed 141/141 tests.
@@ -37,6 +49,6 @@
 ## Interpretation
 
 These are maintainer-run preview checks. They establish reproducibility,
-structural integrity, and a controlled local installation path; they are not
-independent release QA, blind evaluation, production-data approval, or a
-multi-surface support claim.
+structural integrity, and a controlled local installation path. They are not
+production-data approval, production support, or a multi-surface compatibility
+claim.

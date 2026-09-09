@@ -18,8 +18,8 @@ Use when an operation is unavailable, deliberately human-operated, or must remai
 - System: `[unknown]`
 - Operation requiring handoff: `[search | schema inspection | query | export | upload | publish | schedule | send | activate | other]`
 - Minimum permission for the operator: `[unknown]`
-- Test operation before full work: `[safe read-only or harmless scratch test; unknown]`
-- Approved handoff alternative: `[controlled file or approved local-agent path; unknown]`
+- Test operation before full work: `[safe read-only or harmless scratch test, unknown]`
+- Approved handoff alternative: `[controlled file or approved local-agent path, unknown]`
 - Responsible role and completion evidence: `[unknown]`
 - Gap classification: `[safety blocker | execution blocker | deferrable enrichment]`
 - Exact blocker and resumable next operation: `[unknown]`
@@ -31,7 +31,7 @@ Use when an operation is unavailable, deliberately human-operated, or must remai
 - Confirm the funnel reconciles exactly before activation: `[unknown]`
 - Confirm PII and credentials remain in approved systems or controlled files: `[unknown]`
 
-## External action — just-in-time confirmation
+## External action: just-in-time confirmation
 
 The operator must obtain explicit confirmation immediately before any upload, publish, schedule, send, or activation. Local file preparation and transfer for review are not external-action authorization.
 

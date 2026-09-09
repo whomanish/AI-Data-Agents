@@ -1,6 +1,6 @@
 # Campaign runbook template
 
-Use this runbook for one campaign run. Store row-level data only in approved controlled campaign files; report aggregates and redacted evidence here.
+Use this runbook for one campaign run. Store row-level data only in approved controlled campaign files. Report aggregates and redacted evidence here.
 
 ## Run identity and contract
 
@@ -30,7 +30,7 @@ Use this runbook for one campaign run. Store row-level data only in approved con
 | --- | --- | --- | --- | --- | --- | --- |
 | `[unknown]` | `[safety blocker | execution blocker | deferrable enrichment]` | `[unknown]` | `[unknown]` | `[unknown]` | `[unknown]` | `[unknown]` |
 
-## External action — just-in-time confirmation
+## External action: just-in-time confirmation
 
 Do not perform an external action while preparing or validating local outputs. Immediately before the exact action, record:
 

@@ -2,7 +2,7 @@
 
 Use this reference when deciding whether a capability or requested deliverable can proceed.
 
-Each capability is `unconfigured`, `partial`, `ready`, `verified`, or `stale`; an execution or safety blocker is separate from maturity. Assess readiness only for the request's profile and supported population. A capability becomes ready only when its authoritative source, access, semantics, input/output contract, unknown handling, implementation, validation, provenance, scope, and applicable human policy decisions are recorded. It becomes verified only after controlled realistic use succeeds with required human confirmation. Synthetic evidence can support readiness, never production verification.
+Each capability is `unconfigured`, `partial`, `ready`, `verified`, or `stale`. An execution or safety blocker is separate from maturity. Assess readiness only for the request's profile and supported population. A capability becomes ready only when its authoritative source, access, semantics, input/output contract, unknown handling, implementation, validation, provenance, scope, and applicable human policy decisions are recorded. It becomes verified only after controlled realistic use succeeds with required human confirmation. Synthetic evidence can support readiness, never production verification.
 
 Material changes to a source, connector, schema, policy, operating range, or implementation fingerprint make the affected capability and dependent profiles stale. Recheck only the affected dependency unless evidence shows a wider impact. Preserve partial evidence, exact blocker, and next verification operation for resumption.
 

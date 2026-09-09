@@ -16,8 +16,8 @@ Request only the minimum operation-specific access needed for the stated campaig
 
 - System: `[unknown]`
 - Minimum permission: `[read metadata | inspect schema | search | aggregate query | controlled export | approved write operation | unknown]`
-- Exact operation to test: `[non-production, read-only or harmless scratch operation; unknown]`
-- Expected safe evidence: `[capability result, aggregate count, schema/contract confirmation; unknown]`
+- Exact operation to test: `[non-production, read-only or harmless scratch operation, unknown]`
+- Expected safe evidence: `[capability result, aggregate count, schema/contract confirmation, unknown]`
 - Access boundary and expiry/review: `[unknown]`
 - Requested external write operation, if any: `[unknown/not requested]`
 
@@ -26,9 +26,9 @@ Do not use a production write to test access. Connector presence alone does not 
 ## Fallback and resumption
 
 - Exact blocker if access is unavailable: `[unknown]`
-- Approved manual or file handoff alternative: `[system, controlled artifact, responsible role, and transfer method; unknown]`
+- Approved manual or file handoff alternative: `[system, controlled artifact, responsible role, and transfer method, unknown]`
 - Next verification operation after access is granted: `[unknown]`
-- Evidence to preserve for resumption: `[non-PII capability result, scope, provenance, owner, date, blocker; unknown]`
+- Evidence to preserve for resumption: `[non-PII capability result, scope, provenance, owner, date, blocker, unknown]`
 
 ## External action boundary
 

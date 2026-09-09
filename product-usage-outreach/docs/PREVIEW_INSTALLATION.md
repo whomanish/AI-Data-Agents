@@ -1,5 +1,9 @@
 # Preview installation
 
+This installs a local Codex skill that can help define product-usage cohorts,
+review audience decisions, and prepare campaign and measurement handoffs. The
+preview operates locally and does not enable external campaign actions.
+
 ## Supported preview path
 
 The documented preview path is a local Codex skill installation on macOS or
@@ -8,10 +12,10 @@ preview, and it remains an early-testing claim rather than production support.
 
 Prerequisites:
 
-- Codex with local skills enabled;
-- Python 3.11 or newer;
+- Codex with local skills enabled.
+- Python 3.11 or newer.
 - the downloaded preview ZIP, `preview_smoke.py`, and `SHA256SUMS` from the
-  same GitHub prerelease;
+  same GitHub pre-release.
 - no existing production data copied into the skill directory.
 
 ## Verify the download
@@ -46,6 +50,23 @@ Restart Codex, then ask for three general ideas for improving product-usage
 outreach. The advisory route should not request organization access or create
 an overlay.
 
+## Confirm the skill is available
+
+After restarting Codex, ask:
+
+> Use $product-usage-outreach to give me three low-risk ideas for encouraging
+> adoption of a fictional product feature. Do not inspect organization data,
+> create files, or contact anyone.
+
+A successful first response should provide useful campaign ideas without
+requesting organization access or attempting to configure an operational
+workflow.
+
+Next, follow the [synthetic example workflow](EXAMPLE_WORKFLOW.md) to see how
+the skill separates product fit from email eligibility and accounts for each
+input. The [preview testing guide](PREVIEW_TESTING.md) adds ambiguity and
+authorization checks.
+
 ## Update
 
 Keep mutable organization state outside the installed skill. Before replacing
@@ -69,6 +90,6 @@ This does not remove overlays or campaign workspaces stored elsewhere.
   path above must exist without an extra wrapper directory.
 - Python version failure: install Python 3.11+ and rerun the smoke checker.
 - JSON/schema dependency failure during an operational run: install the
-  dependency reported by that local script; do not bypass validation.
+  dependency reported by that local script. Do not bypass validation.
 - Any request to send or upload: stop. Preview testing does not authorize an
   external write.

@@ -25,7 +25,7 @@ Registry schemas directly require exactly one of each named capability and requi
 
 ## Hash algorithm
 
-For `sha256-identity-collision-scope-definition-v1`, update SHA-256 with the UTF-8 identifier, one NUL byte, the UTF-8 identity namespace, one NUL byte, then each collision dimension sorted by UTF-8 bytes and followed by one newline byte. Prefix the lowercase hexadecimal digest with `sha256:`. The profile records this digest with the identifier. A catalog definition whose digest is incorrect is invalid; a profile whose bound digest differs from the resolved catalog definition is stale and cannot match.
+For `sha256-identity-collision-scope-definition-v1`, update SHA-256 with the UTF-8 identifier, one NUL byte, the UTF-8 identity namespace, one NUL byte, then each collision dimension sorted by UTF-8 bytes and followed by one newline byte. Prefix the lowercase hexadecimal digest with `sha256:`. The profile records this digest with the identifier. A catalog definition whose digest is incorrect is invalid. A profile whose bound digest differs from the resolved catalog definition is stale and cannot match.
 
 For `sha256-path-null-sha256-newline-v1`, sort export entries by UTF-8 relative path. For each entry, update SHA-256 with the UTF-8 path, one NUL byte, the lowercase ASCII `sha256:<hex>` content digest, and one newline byte. Prefix the final lowercase hexadecimal digest with `sha256:`. File byte counts and content hashes are verified before this inventory digest. Any mismatch aborts restoration before a write.
 

@@ -1,31 +1,71 @@
-# Product Usage Outreach — Preview
+# Product Usage Outreach: Preview
 
-> **PREVIEW / EARLY TESTING:** This repository is not a production release.
-> Use it with synthetic or approved local data only. External sending,
-> uploading, scheduling, publication, and activation remain out of scope.
+Product Usage Outreach helps product, growth, and lifecycle teams turn product
+behaviour into a carefully defined campaign audience and outreach plan.
 
-Product Usage Outreach is a portable agent skill for turning product-usage
-signals into validated cohorts, local audience artifacts, campaign plans, and
-reviewable activation handoffs while preserving identity, eligibility,
-suppression, privacy, and authorization boundaries.
+Start with a question such as:
 
-## Preview status
+> Which active customers tried dashboards but have not adopted scheduled
+> reports, and what should we send them?
 
-The current preview is built from a maintainer-verified immutable source
-snapshot. Its deterministic local pipeline and selected routing/safety
-scenarios have passed controlled synthetic tests. Formal independent QA
-consolidation, blind evaluation, multi-surface conformance, and
-production-release sign-off are still open.
+The skill helps define what “active,” “tried,” and “adopted” mean. It then
+checks who qualifies, separates product fit from contact eligibility, applies
+suppression and holdout rules, and prepares a campaign and measurement handoff
+for review. It does not contact users automatically.
 
-| Capability | Preview status |
+## What it produces
+
+Depending on the requested outcome and the evidence available, the skill can
+produce:
+
+- a precise, reviewable cohort definition.
+- inclusion, exclusion, suppression, holdout, and unresolved decisions.
+- reconciled counts showing where every input record went.
+- an email or in-app audience specification.
+- campaign messaging, timing, and measurement plans.
+- an activation handoff that records what is ready and what still needs a
+  human decision.
+
+## Who it is for
+
+- Product and growth teams exploring feature-adoption campaigns.
+- Lifecycle and customer teams preparing targeted email or in-app outreach.
+- Analysts who need campaign logic to remain explicit and reproducible.
+- Operators who want audience preparation separated from the final act of
+  sending or publishing.
+
+## How it works
+
+1. Define the promoted behaviour, observation window, exclusions, and desired
+   campaign outcome.
+2. Normalize approved inputs and validate the behavioural cohort.
+3. Resolve the identity and account context required for the selected channel.
+4. Apply eligibility, suppression, and holdout rules without guessing missing
+   facts.
+5. Prepare the channel-specific audience, campaign plan, and measurement plan.
+6. Reconcile every record and produce a reviewable handoff. Any external action
+   remains separately confirmation-gated.
+
+See the [synthetic example workflow](docs/EXAMPLE_WORKFLOW.md) for a small,
+human-readable walkthrough.
+
+> **PREVIEW / EARLY TESTING:** Use this version with synthetic or explicitly
+> approved local test data only. It is not approved for production data.
+> Sending, uploading, scheduling, publication, and activation are disabled and
+> unsupported.
+
+## What you can test in this preview
+
+| Activity | Preview status |
 | --- | --- |
-| General campaign advice | Available |
-| Local deterministic synthetic cohort/audience run | Available |
-| Failed quick-check handling | Available |
-| Local overlay template | Available |
-| External send/upload/activation | Disabled and unsupported |
-| Production data | Not approved for preview testing |
-| Claude, ChatGPT app, or other surfaces | Untested |
+| Ask for product-usage campaign advice | Available |
+| Clarify an ambiguous cohort definition | Available |
+| Run a local synthetic cohort and audience workflow | Available |
+| Review why records were included, excluded, suppressed, or left unresolved | Available |
+| Prepare a campaign and measurement handoff | Available |
+| Send, upload, schedule, publish, or activate a campaign | Disabled and unsupported |
+| Use production customer or recipient data | Not approved |
+| Install on surfaces other than local Codex | Not yet tested |
 
 ## Install
 
@@ -42,13 +82,23 @@ Read the installed `PREVIEW.md`, then restart Codex. See
 [Preview installation](docs/PREVIEW_INSTALLATION.md) for prerequisites,
 updates, removal, and troubleshooting.
 
-## Try the preview safely
+## Try it in five minutes
 
-Start with an advisory request that uses no organization data, or follow the
-controlled synthetic walkthrough in [Preview testing](docs/PREVIEW_TESTING.md).
-Review [Preview limitations](docs/PREVIEW_LIMITATIONS.md) before testing.
-Exact package checks and the local test environment are recorded in
-[Preview verification](docs/PREVIEW_VERIFICATION.md).
+After installation, start with the copyable prompt in the
+[synthetic example workflow](docs/EXAMPLE_WORKFLOW.md). Then use the
+[preview testing guide](docs/PREVIEW_TESTING.md) to check clarification and
+authorization boundaries.
+
+## Documentation
+
+- [Example workflow](docs/EXAMPLE_WORKFLOW.md): see the skill's inputs,
+  decisions, and outputs in one fictional case.
+- [Installation](docs/PREVIEW_INSTALLATION.md): verify, install, update, or
+  remove the preview.
+- [Testing guide](docs/PREVIEW_TESTING.md): run the recommended safe tests.
+- [Limitations](docs/PREVIEW_LIMITATIONS.md): understand what is not supported.
+- [Verification](docs/PREVIEW_VERIFICATION.md): inspect the package checks and
+  tested environment.
 
 ## Release track
 
